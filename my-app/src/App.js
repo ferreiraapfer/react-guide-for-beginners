@@ -16,7 +16,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      selectedOption: null,
       jsonList: []
     };
   }
@@ -96,18 +95,18 @@ class App extends Component {
                     <tbody>
                       {this.state.jsonList.map(item => {
                         if (
-                          this.state.selectedOption === "" ||
-                          item.name === this.state.selectedOption
+                          this.state.selectedOption === undefined || 
+                          ( this.state.selectedOption !== undefined && 
+                            item.name === this.state.selectedOption.label)
                         ) {
-                          
                           return (
-                            <tr>
+                            <tr key={item.id}>
                               <td>{item.name}</td>
                               <td>{item.address}</td>
                               <td>{item.age}</td>
                               <td>{item.company}</td>
                             </tr>
-                          )
+                          );
                         }
                       })}
                     </tbody>
